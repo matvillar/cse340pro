@@ -22,6 +22,9 @@ app.set('layout', './layouts/layout'); // not at views root
  *************************/
 app.use(require('./routes/static'));
 
+// Inventory routes
+app.use('/inv', require('./routes/inventory-route'));
+
 // Index Route
 app.get('/', baseController.buildHome);
 
