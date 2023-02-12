@@ -24,18 +24,3 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 module.exports = pool;
-// const { Pool } = require('pg');
-// require('dotenv').config();
-
-// const isDev = process.env.NODE_ENV === 'development';
-
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ...(isDev && {
-//     ssl: {
-//       rejectUnauthorized: false,
-//     },
-//   }),
-// });
-
-// module.exports = pool;

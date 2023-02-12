@@ -1,0 +1,28 @@
+<div class="titlecar">
+  <% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else { res.redirect('/'); } %>
+</div>
+<!-- Display message in case of error -->
+<% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<!-- More -->
+<section class="car-view">
+  <div class="car-img">
+    <img src="../..<%= data[0].inv_image%>" alt="" />
+  </div>
+  <div class="car-details">
+    <p><%= data[0].inv_make%> <%= data[0].inv_model %> Details</p>
+    <p>
+      Price: $<%=new Intl.NumberFormat('en-US').format(data[0].inv_price) %>
+    </p>
+    <p><span>Descrition: </span><%= data[0].inv_description %></p>
+    <p><span>Color: </span><%= data[0].inv_color %></p>
+    <p>
+      <span>Miles:</span> <%=new
+      Intl.NumberFormat('en-US').format(data[0].inv_miles) %>
+    </p>
+  </div>
+</section>

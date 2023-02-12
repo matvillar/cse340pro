@@ -16,6 +16,13 @@ Util.buildNav = function (data) {
   list += '</ul>';
   return list;
 };
+// Car View
+
+// Util.builCarView = function (data) {
+//   data.rows.forEach((row) => {
+//     `<h2>${row.inv_year} ${row.inv_make} </h2>`;
+//   });
+// };
 
 // ********************************************
 // Builds the navigation bar
@@ -25,9 +32,19 @@ Util.buildNav = function (data) {
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications();
 
-  // return [];
   let nav = Util.buildNav(data);
+
+  // let view = Util.builCarView(data);
   return nav;
 };
+
+// builds car view
+// Util.getCar = async function (req, res, next) {
+//   let data = await invModel.getSpecificVehicles();
+
+//   // return [];
+
+//   return view;
+// };
 
 module.exports = Util;

@@ -9,13 +9,30 @@ async function getClassifications() {
 async function getVehiclesByClassificationId(classificationId) {
   try {
     const data = await pool.query(
-      'SELECT * FROM public.inventory AS i JOIN public.classification AS c ON i.classification_id = c.classification_id WHERE i.classification = $1',
+      'SELECT * FROM public.inventory AS i JOIN public.classification AS c ON i.classification_id = c.classification_id WHERE i.classification_id = $1',
       [classificationId]
     );
+
     return data.rows;
   } catch (error) {
     console.log(`getclassificationsbyid error ${error}`);
   }
 }
+async function getSpecificVehicles(inventoryId) {
+  try {
+    const data = await pool.query(
+      'SELECT * FROM public.inventory WHERE inventory.inv_id = $1',
+      [inventoryId]
+    );
+    // console.log(data);
+    return data.rows;
+  } catch (error) {
+    console.log(`getspecificvehicle error ${error}`);
+  }
+}
 
-module.exports = { getClassifications, getVehiclesByClassificationId };
+module.exports = {
+  getClassifications,
+  getVehiclesByClassificationId,
+  getSpecificVehicles,
+};

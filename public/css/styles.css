@@ -42,6 +42,10 @@ nav {
   background-color: var(--dark-color);
   margin: 10px;
 }
+nav > ul > li > a {
+  color: #fff;
+  text-decoration: none;
+}
 ul {
   display: flex;
   padding: 10px;
@@ -127,4 +131,64 @@ li {
 
 footer {
   padding: 20px;
+}
+
+/* car details */
+.titlecar {
+  padding: 10px;
+}
+.car-view {
+  padding: 10px;
+}
+.car-img {
+  text-align: center;
+}
+
+.car-img img {
+  width: 100%;
+}
+.car-details > * {
+  margin: 10px;
+  padding: 15px;
+}
+.car-details > p:nth-of-type(even) {
+  background-color: #d6d6d6;
+}
+.car-details > p:nth-child(1) {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.car-details p {
+  font-size: 1.2rem;
+}
+.car-details span {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+/* classification view */
+
+#inv-display {
+  display: flex;
+  flex-direction: column;
+}
+#inv-display li {
+  text-align: center;
+  border: #ccc 1px solid;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.namePrice h2 {
+  color: #00d5ff;
+  margin: 20px;
+}
+.namePrice hr {
+  border-top: var(--dark-color) 5px solid;
+}
+.namePrice span {
+  color: var(--dark-color);
+  font-size: 1.2rem;
+  font-weight: bolder;
 }

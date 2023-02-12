@@ -1,7 +1,8 @@
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else { res.redirect('/') } %>
-
+<div class="titlecar">
+  <% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else { res.redirect('/') } %>
+</div>
 <!-- Display message in case of error -->
 <% if (message) { %>
 <p class="notice"><%= message %></p>
@@ -11,13 +12,12 @@
 
 <% if(data.length > 0){ %>
 <ul id="inv-display">
-  <%
   <!-- Note : Each element from the array must be in its own ejs block. -->
   <!-- Combining more than one element will result in a parse error -->
-  data.forEach(vehicle => { %>
+  <% data.forEach(vehicle => { %>
   <li>
     <a
-      href="../../detail/<%= vehicle.inv_id %>"
+      href="../../inv/detail/<%= vehicle.inv_id %>"
       title="View <%= vehicle.inv_make %> <%= vehicle.inv_model %> details"
       ><img
         src="<%= vehicle.inv_thumbnail %>"
@@ -29,7 +29,8 @@
         <a
           href="../../inv/detail/<%= vehicle.inv_id %>"
           title="View <%= vehicle.inv_make %> <%=vehicle.inv_model %>"
-        ></a>
+          ><%=vehicle.inv_make%> <%= vehicle.inv_model %>
+        </a>
       </h2>
       <span
         >$<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></span
