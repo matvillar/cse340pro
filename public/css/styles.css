@@ -255,3 +255,7 @@ footer {
   background-color: #00d5ff;
   font-weight: bold;
 }
+/* register form */
+.reg {
+  padding-bottom: 40px;
+}

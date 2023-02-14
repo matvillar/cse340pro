@@ -1,0 +1,54 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Display message in case of error -->
+<% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<form class="login-form" action="/client/register" method="post">
+  <div class="form-input">
+    <label for="firstname">Firstname:</label>
+    <input
+      type="text"
+      name="client_firstname"
+      id="firstname"
+      placeholder="Firstname"
+      required
+    />
+  </div>
+  <div class="form-input">
+    <label for="lastname">Lastname:</label>
+    <input
+      type="text"
+      name="client_lastname"
+      id="lastname"
+      placeholder="Lastname"
+      required
+    />
+  </div>
+  <div class="form-input">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      name="client_email"
+      id="email"
+      placeholder="csemotors@email.com"
+      required
+    />
+  </div>
+  <div class="form-input">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      name="client_password"
+      id="password"
+      placeholder="Password"
+      required
+    />
+  </div>
+  <div class="form-submit reg">
+    <input type="submit" value="Register" />
+  </div>
+</form>

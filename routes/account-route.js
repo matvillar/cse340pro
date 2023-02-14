@@ -1,8 +1,10 @@
 const express = require('express');
 const router = new express.Router();
-const utilities = require('../utilities/index');
-const buildLogin = require('../controllers/accController');
 
-router.get('/login', buildLogin);
+const accController = require('../controllers/accController');
+
+router.get('/login', accController.buildLogin);
+router.get('/register', accController.buildRegister);
+router.post('/register', accController.registerClient);
 
 module.exports = router;
