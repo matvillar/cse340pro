@@ -1,0 +1,37 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Display message in case of error -->
+<% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<form class="login-form" action="../clients/login" method="post">
+  <div class="form-input">
+    <label for="username">Username:</label>
+    <input
+      type="email"
+      name="username"
+      id="username"
+      placeholder="Username"
+      required
+    />
+  </div>
+  <div class="form-input">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Password"
+      required
+    />
+  </div>
+  <div class="form-submit">
+    <input type="submit" value="Login" />
+  </div>
+  <div class="sign-up">
+    <p>No account? <a href="/">Sign-up</a></p>
+  </div>
+</form>

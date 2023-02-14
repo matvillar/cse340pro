@@ -192,3 +192,66 @@ footer {
   font-size: 1.2rem;
   font-weight: bolder;
 }
+
+/* Form login */
+.form-title {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 40px 0 20px 0;
+}
+
+.login-form {
+  background-color: #e6f4f1;
+  max-width: 400px;
+  margin: 20px auto;
+  border: var(--dark-color) 3px solid;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+}
+.sign-up {
+  text-align: center;
+  margin: 20px;
+}
+.sign-up p {
+  font-weight: bold;
+}
+.sign-up a {
+  color: var(--dark-color);
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+}
+.form-input label {
+  font-size: large;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.form-input:nth-child(1) {
+  padding-top: 40px;
+}
+.form-input input {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  margin-top: 10px;
+}
+.form-submit {
+  text-align: center;
+}
+.form-submit input {
+  padding: 6px 25px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: var(--dark-color);
+
+  transition: all ease-in-out 0.3s;
+}
+.form-submit input:hover {
+  color: #fff;
+  background-color: #00d5ff;
+  font-weight: bold;
+}

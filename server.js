@@ -25,6 +25,9 @@ app.use(require('./routes/static'));
 // Inventory routes
 app.use('/inv', require('./routes/inventory-route'));
 
+//Account Routes
+app.use('/client', require('./routes/account-route'));
+
 // Index Route
 app.get('/', baseController.buildHome);
 
