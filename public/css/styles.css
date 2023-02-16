@@ -45,6 +45,12 @@ nav {
 nav > ul > li > a {
   color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
+  transition: all ease-in-out 0.3s;
+}
+nav > ul > li > a:hover {
+  color: #00d5ff;
+  transform: scale(1.1);
 }
 ul {
   display: flex;
@@ -166,7 +172,11 @@ footer {
   font-size: 1.5rem;
   font-weight: bolder;
 }
-
+/* Message in each page */
+.notice {
+  font-weight: bold;
+  color: red;
+}
 /* classification view */
 
 #inv-display {
@@ -178,6 +188,9 @@ footer {
   border: #ccc 1px solid;
   border-radius: 10px;
   margin: 10px;
+}
+#inv-display img {
+  width: 100%;
 }
 
 .namePrice h2 {
