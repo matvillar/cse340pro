@@ -7,7 +7,7 @@ const Util = {};
 // ********************************************
 
 Util.buildNav = function (data) {
-  let list = '<ul>';
+  let list = '<ul class="navbar">';
   list += '<li><a href="/" title="Home page">Home</a></li>';
   data.rows.forEach((row) => {
     list += '<li>';
@@ -42,8 +42,8 @@ Util.getClassDropDown = async function (req, res, next) {
 // build Dorp down select option
 Util.buildClassDropDown = function (data) {
   let select = `<label for="classificationName">Classification</label>`;
-  select += `<select name="classification_name" id="className"> `;
-  console.log(data);
+  select += `<select name="classification_id" id="className"> `;
+
   data.forEach((row) => {
     select += `<option value="${row.classification_id}">${row.classification_name}</option>`;
   });

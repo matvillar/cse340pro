@@ -64,19 +64,41 @@ manageController.AddClass = async function (req, res) {
 manageController.AddVehicle = async function (req, res) {
   let nav = await utilities.getNav();
 
-  const { classification_name } = req.body;
-
-  const addClassResult = await manageModel.addClassCar(classification_name);
-  console.log(addClassResult);
-  if (addClassResult) {
+  const {
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+  } = req.body;
+  console.log(classification_id);
+  const addVehicleResult = await manageModel.addVehicleToData(
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color
+  );
+  console.log(addVehicleResult);
+  if (addVehicleResult) {
     res.status(201).render('../views/inventory/management.ejs', {
       title: 'Vehicle Management',
       nav,
-      message: `The ${classification_name} classification was successfully added.`,
+      message: `The ${inv_make} ${inv_model} classification was successfully added.`,
       errors: null,
     });
   } else {
-    const message = 'Sorry, the Addition of New Classification failed.';
+    const message = 'Sorry, the Addition of New Vehicle failed.';
     res.status(501).render('../views/inventory/add-classification.ejs', {
       title: 'Add New Classification',
       nav,
