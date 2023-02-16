@@ -35,6 +35,8 @@ app.use('/inv', require('./routes/inventory-route'));
 
 //Account Routes
 app.use('/client', require('./routes/account-route'));
+//Management Route
+app.use('/manager', require('./routes/management-route'));
 
 // Index Route
 app.get('/', baseController.buildHome);

@@ -1,0 +1,25 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/'); } %>
+
+<!-- Display message in case of error -->
+<% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<div class="add-new-form_container">
+  <form class="classification-form">
+    <h2>Classification Name</h2>
+    <p>
+      Name may <span>NOT</span> contain a space or special character of any
+      kind.
+    </p>
+
+    <div class="class_form-input">
+      <input name="classification_name" id="classificationName" type="text" />
+    </div>
+    <p>Field is required*</p>
+    <button type="submit" value="Add Classification">Add Classification</button>
+  </form>
+</div>
+<div class="go-back"><a href="/manager/admin"><--</a></div>

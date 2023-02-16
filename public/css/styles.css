@@ -259,3 +259,72 @@ footer {
 .reg {
   padding-bottom: 40px;
 }
+
+/* manager ADMIN */
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 55px;
+}
+.admin h2 {
+  margin-bottom: 5px;
+}
+
+/* Add Classification */
+.add-new-form_container {
+  background-color: #00d5ff;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+}
+.add-new-form_container img {
+  width: 20px;
+}
+.classification-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+.classification-form span {
+  font-size: larger;
+  font-weight: bold;
+}
+.classification-form > * {
+  margin-bottom: 18px;
+}
+.classification-form button {
+  background-color: #00d5ff;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+.go-back {
+  font-size: larger;
+  font-weight: bolder;
+  display: flex;
+  justify-content: flex-end;
+  margin: 50px;
+}
+.go-back a {
+  text-decoration: none;
+  color: #252535;
+  background-color: #00d5ff;
+  padding: 6px 15px;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+}
+
+.class_form-input {
+  display: flex;
+  flex-direction: column;
+}
+.class_form-input input,
+.class_form-input textarea {
+  outline: none;
+  padding: 5px;
+}

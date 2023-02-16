@@ -1,0 +1,62 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/'); } %>
+
+<!-- Display message in case of error -->
+<% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<div class="add-new-form_container">
+  <p>All Fields are required</p>
+  <form class="classification-form" id="addVehicle">
+    <div class="class_form-input">
+      <label for="classificationName">Classification</label>
+      <select name="classification_name" id="className"></select>
+    </div>
+    <div class="class_form-input">
+      <label for="invMake">Make</label>
+      <input name="inv_make" id="invMake" />
+    </div>
+    <div class="class_form-input">
+      <label for="invModel">Model</label>
+      <input name="inv_model" id="invModel" />
+    </div>
+    <div class="class_form-input">
+      <label for="invDescription">Description</label>
+      <textarea
+        name="inv_description"
+        id="invDescription"
+        form="addVehicle"
+      ></textarea>
+    </div>
+    <div class="class_form-input">
+      <label for="invImage">Image Path</label>
+      <input name="inv_image" id="invImage" />
+    </div>
+    <div class="class_form-input">
+      <label for="invThumbnail">Thumbnail Path</label>
+      <input name="inv_thumbnail" id="invThumbnail" />
+    </div>
+    <div class="class_form-input">
+      <label for="invPrice">Price</label>
+      <input name="inv_price" id="invPrice" />
+    </div>
+    <div class="class_form-input">
+      <label for="invYear">Year</label>
+      <input name="inv_year" id="invYear" />
+    </div>
+    <div class="class_form-input">
+      <label for="invMiles">Miles</label>
+      <input name="inv_miles" id="invMiles" />
+    </div>
+    <div class="class_form-input">
+      <label for="invColor">Color</label>
+      <input name="inv_color" id="invColor" />
+    </div>
+
+    <button type="submit" value="Add Vehicle">Add Vehicle</button>
+  </form>
+</div>
+
+<div class="go-back"><a href="/manager/admin"><--</a></div>
