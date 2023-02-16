@@ -2,8 +2,10 @@ const express = require('express');
 const router = new express.Router();
 const manageController = require('../controllers/manageController');
 
-router.get('/add-classification', manageController.addClass);
-router.get('/add-vehicle', manageController.addVehicle);
-router.get('/admin', manageController.managerView);
+router.get('/add-classification', manageController.addClassView);
+router.get('/add-vehicle', manageController.addVehicleView);
+router.get('/admin-inv', manageController.managerView);
+
+router.post('/admin-inv', manageController.AddClass);
 
 module.exports = router;
