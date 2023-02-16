@@ -7,5 +7,6 @@ router.get('/add-vehicle', manageController.addVehicleView);
 router.get('/admin-inv', manageController.managerView);
 
 router.post('/admin-inv', manageController.AddClass);
+router.post('/admin-inv', manageController.AddVehicle);
 
 module.exports = router;

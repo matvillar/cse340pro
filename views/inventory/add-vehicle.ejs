@@ -9,11 +9,13 @@
 
 <div class="add-new-form_container">
   <p>All Fields are required</p>
-  <form class="classification-form" id="addVehicle">
-    <div class="class_form-input">
-      <label for="classificationName">Classification</label>
-      <select name="classification_name" id="className"></select>
-    </div>
+  <form
+    class="classification-form"
+    id="addVehicle"
+    action="/manager/admin-inv"
+    method="post"
+  >
+    <div class="class_form-input"><%-selectOption-%></div>
     <div class="class_form-input">
       <label for="invMake">Make</label>
       <input name="inv_make" id="invMake" />

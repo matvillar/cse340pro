@@ -13,4 +13,14 @@ async function addClassCar(classification_name) {
   }
 }
 
-module.exports = { addClassCar };
+async function getClassList() {
+  try {
+    const data = await pool.query('SELECT * FROM public.classification');
+    // console.log(data);
+    // console.log(data.rows);
+    return data.rows;
+  } catch (error) {
+    console.log(`getspecificvehicle error ${error}`);
+  }
+}
+module.exports = { addClassCar, getClassList };

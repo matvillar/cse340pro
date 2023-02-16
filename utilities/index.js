@@ -1,4 +1,5 @@
 const invModel = require('../models/inventory-model');
+const managerModel = require('../models/manager-model');
 const Util = {};
 
 // ********************************************
@@ -16,18 +17,6 @@ Util.buildNav = function (data) {
   list += '</ul>';
   return list;
 };
-// Car View
-
-// Util.builCarView = function (data) {
-//   data.rows.forEach((row) => {
-//     `<h2>${row.inv_year} ${row.inv_make} </h2>`;
-//   });
-// };
-
-// ********************************************
-// Builds the navigation bar
-// ********************************************
-//  This builds the site nav
 
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications();
@@ -37,14 +26,29 @@ Util.getNav = async function (req, res, next) {
   // let view = Util.builCarView(data);
   return nav;
 };
+// Car selection/option (drop down)
+Util.getClassDropDown = async function (req, res, next) {
+  try {
+    let data = await managerModel.getClassList();
+    // console.log('Data:', data);
+    let selectOption = Util.buildClassDropDown(data);
 
-// builds car view
-// Util.getCar = async function (req, res, next) {
-//   let data = await invModel.getSpecificVehicles();
-
-//   // return [];
-
-//   return view;
-// };
+    return selectOption;
+  } catch (error) {
+    console.log(`getClassDropDown error: ${error}`);
+    return error;
+  }
+};
+// build Dorp down select option
+Util.buildClassDropDown = function (data) {
+  let select = `<label for="classificationName">Classification</label>`;
+  select += `<select name="classification_name" id="className"> `;
+  console.log(data);
+  data.forEach((row) => {
+    select += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+  });
+  select += '</select>';
+  return select;
+};
 
 module.exports = Util;
