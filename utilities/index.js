@@ -1,5 +1,5 @@
 const invModel = require('../models/inventory-model');
-const managerModel = require('../models/manager-model');
+
 const Util = {};
 
 // ********************************************
@@ -29,7 +29,7 @@ Util.getNav = async function (req, res, next) {
 // Car selection/option (drop down)
 Util.getClassDropDown = async function (req, res, next) {
   try {
-    let data = await managerModel.getClassList();
+    let data = await invModel.getClassList();
     // console.log('Data:', data);
     let selectOption = Util.buildClassDropDown(data);
 
