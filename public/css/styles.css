@@ -176,6 +176,13 @@ footer {
 .notice {
   font-weight: bold;
   color: red;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.notice li {
+  font-weight: bold;
+  color: red;
 }
 /* classification view */
 

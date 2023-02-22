@@ -3,8 +3,12 @@
 <% } else { res.redirect('/') } %>
 
 <!-- Display message in case of error -->
-<% if (message) { %>
-<p class="notice"><%= message %></p>
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
 <% } %>
 
 <form class="login-form" action="/client/register" method="post">
@@ -40,13 +44,20 @@
   </div>
   <div class="form-input">
     <label for="password">Password:</label>
+
     <input
       type="password"
       name="client_password"
       id="password"
       placeholder="Password"
       required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
     />
+  </div>
+  <div class="password-req">
+    <p>At least 12 characters</p>
+    <p>At least 1 uppercase character</p>
+    <p>1 number and 1 special character</p>
   </div>
   <div class="form-submit reg">
     <input type="submit" value="Register" />
