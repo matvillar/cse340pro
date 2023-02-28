@@ -7,15 +7,16 @@
 <p class="notice"><%= message %></p>
 <% } %>
 
-<form class="login-form" action="/client/login" method="post">
+<form class="login-form" id="loginForm" action="/client/login" method="post">
   <div class="form-input">
-    <label for="username">Username:</label>
+    <label for="username">Email:</label>
     <input
       type="email"
-      name="username"
+      name="client_email"
       id="username"
-      placeholder="Username"
+      placeholder="email"
       required
+      value="<%= locals.client_email %>"
     />
   </div>
   <div class="form-input">

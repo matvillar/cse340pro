@@ -1,3 +1,4 @@
+const accountModel = require('../models/account-model');
 const utilities = require('./');
 const { body, validationResult } = require('express-validator');
 
@@ -22,11 +23,17 @@ validate.registrationRules = () => {
 
     // Valid email is required and cannot already exist in the database
 
-    body('client_password')
+    body('client_email')
       .trim()
       .isEmail()
       .normalizeEmail()
-      .withMessage('a valid email is required.'),
+      .withMessage('a valid email is required.')
+      .custom(async (client_email) => {
+        const emailExists = await accountModel.checkExistingEmail(client_email); // is it checkEmail or checkExistingEmail?? *******
+        if (emailExists) {
+          throw new Error('Email exists. Please login or use different email');
+        }
+      }),
 
     // password is required and must be strong password
     body('client_password')
@@ -58,6 +65,51 @@ validate.checkRegData = async (req, res, next) => {
       client_firstname,
       client_lastname,
       client_email,
+    });
+    return;
+  }
+  next();
+};
+
+validate.loginRules = () => {
+  return [
+    body('client_email')
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage('a valid email is required.')
+      .custom(async (client_email) => {
+        const emailExists = await accountModel.checkExistingEmail(client_email); // is it checkEmail or checkExistingEmail?? *******
+        if (emailExists) {
+          throw new Error('Email exists. Please login or use different email');
+        }
+      }),
+
+    body('client_password')
+      .trim()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage('Password does not meet requirements.'),
+  ];
+};
+validate.checkLogData = async function (res, req, next) {
+  const { client_email, client_password } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render('../views/clients/login.ejs', {
+      errors,
+      message: null,
+      title: 'Registration',
+      nav,
+      client_email,
+      client_password,
     });
     return;
   }

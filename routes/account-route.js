@@ -8,9 +8,12 @@ router.get('/login', accController.buildLogin);
 router.get('/register', accController.buildRegister);
 router.post(
   '/register',
-  regValidate.registrationRules(), // Ask why is this using ()
+  regValidate.registrationRules(), 
   regValidate.checkRegData,
   accController.registerClient
 );
 
+router.post('/login', (req, res) => {
+  res.status(200).send('login process');
+});
 module.exports = router;

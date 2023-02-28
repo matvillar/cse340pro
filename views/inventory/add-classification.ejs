@@ -16,7 +16,13 @@
     </p>
 
     <div class="class_form-input">
-      <input name="classification_name" id="classificationName" type="text" />
+      <input
+        name="classification_name"
+        id="classificationName"
+        type="text"
+        pattern="[a-zA-Z]+"
+        required
+      />
     </div>
     <p>Field is required*</p>
     <button type="submit" value="Add Classification">Add Classification</button>

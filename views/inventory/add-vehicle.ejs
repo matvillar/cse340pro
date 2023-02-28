@@ -18,43 +18,58 @@
     <div class="class_form-input"><%-selectOption-%></div>
     <div class="class_form-input">
       <label for="invMake">Make</label>
-      <input name="inv_make" id="invMake" />
+      <input
+        type="text"
+        name="inv_make"
+        id="invMake"
+        pattern="[a-zA-Z]+"
+        required
+      />
     </div>
     <div class="class_form-input">
       <label for="invModel">Model</label>
-      <input name="inv_model" id="invModel" />
+      <input
+        type="text"
+        name="inv_model"
+        id="invModel"
+        pattern="[a-zA-Z]+"
+        required
+      />
     </div>
     <div class="class_form-input">
       <label for="invDescription">Description</label>
       <textarea
+        type="text"
         name="inv_description"
         id="invDescription"
         form="addVehicle"
+        pattern="\w+"
+        required
       ></textarea>
     </div>
     <div class="class_form-input">
       <label for="invImage">Image Path</label>
-      <input name="inv_image" id="invImage" />
+      <input type="text" name="inv_image" id="invImage" />
     </div>
     <div class="class_form-input">
       <label for="invThumbnail">Thumbnail Path</label>
-      <input name="inv_thumbnail" id="invThumbnail" />
+      <input type="text" name="inv_thumbnail" id="invThumbnail" />
     </div>
     <div class="class_form-input">
       <label for="invPrice">Price</label>
-      <input name="inv_price" id="invPrice" />
+      <input type="text" name="inv_price" id="invPrice" />
     </div>
     <div class="class_form-input">
       <label for="invYear">Year</label>
-      <input name="inv_year" id="invYear" />
+      <input type="text" name="inv_year" id="invYear" />
     </div>
     <div class="class_form-input">
       <label for="invMiles">Miles</label>
-      <input name="inv_miles" id="invMiles" />
+      <input type="text" name="inv_miles" id="invMiles" />
     </div>
     <div class="class_form-input">
       <label for="invColor">Color</label>
-      <input name="inv_color" id="invColor" />
+      <input type="text" name="inv_color" id="invColor" />
     </div>
 
     <button type="submit" value="Add Vehicle">Add Vehicle</button>

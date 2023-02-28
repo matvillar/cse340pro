@@ -309,6 +309,22 @@ footer {
   border-radius: 10px;
   text-transform: uppercase;
 }
+/* styling forms */
+input[type='text']:valid:focus,
+input[type='email']:valid:focus,
+input[type='password']:valid:focus {
+  border-color: green;
+  border-radius: 10px;
+  background-color: rgba(57, 184, 57, 0.372);
+}
+input[type='text']:invalid:focus,
+input[type='email']:invalid:focus,
+input[type='password']:invalid:focus {
+  border-color: red;
+  border-radius: 10px;
+  background-color: rgba(247, 93, 93, 0.321);
+}
+
 .classification-form span {
   font-size: larger;
   font-weight: bold;

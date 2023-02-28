@@ -45,7 +45,7 @@ Util.buildClassDropDown = function (data) {
   select += `<select name="classification_id" id="className"> `;
 
   data.forEach((row) => {
-    select += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+    select += `<option value="${row.classification_id}" required>${row.classification_name}</option>`;
   });
   select += '</select>';
   return select;
