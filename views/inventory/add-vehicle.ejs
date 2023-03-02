@@ -3,7 +3,13 @@
 <% } else { res.redirect('/'); } %>
 
 <!-- Display message in case of error -->
-<% if (message) { %>
+<% if (typeof errors !== 'undefined') { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %><% if (message) { %>
 <p class="notice"><%= message %></p>
 <% } %>
 
@@ -15,7 +21,7 @@
     action="/inv/add-vehicle"
     method="post"
   >
-    <div class="class_form-input"><%-selectOption-%></div>
+    <div class="class_form-input"><%-classificationSelect-%></div>
     <div class="class_form-input">
       <label for="invMake">Make</label>
       <input
@@ -24,6 +30,7 @@
         id="invMake"
         pattern="[a-zA-Z]+"
         required
+        value="<%= locals.inv_make%>"
       />
     </div>
     <div class="class_form-input">
@@ -34,6 +41,7 @@
         id="invModel"
         pattern="[a-zA-Z]+"
         required
+        value="<%= locals.inv_model%>"
       />
     </div>
     <div class="class_form-input">
@@ -45,31 +53,72 @@
         form="addVehicle"
         pattern="\w+"
         required
+        value="<%=locals.inv_description%>"
       ></textarea>
     </div>
     <div class="class_form-input">
       <label for="invImage">Image Path</label>
-      <input type="text" name="inv_image" id="invImage" />
+      <input
+        type="text"
+        name="inv_image"
+        id="invImage"
+        required
+        value="<%= locals.inv_image %>"
+        placeholder="/images/vehicles/image.png"
+      />
     </div>
     <div class="class_form-input">
       <label for="invThumbnail">Thumbnail Path</label>
-      <input type="text" name="inv_thumbnail" id="invThumbnail" />
+      <input
+        type="text"
+        name="inv_thumbnail"
+        id="invThumbnail"
+        placeholder="/images/vehicles/image.png"
+        value="<%= locals.inv_thumbnail %>"
+        required
+      />
     </div>
     <div class="class_form-input">
       <label for="invPrice">Price</label>
-      <input type="text" name="inv_price" id="invPrice" />
+      <input
+        type="text"
+        name="inv_price"
+        id="invPrice"
+        required
+        value="<%= locals.inv_price %>"
+      />
     </div>
     <div class="class_form-input">
       <label for="invYear">Year</label>
-      <input type="text" name="inv_year" id="invYear" />
+      <input
+        type="text"
+        name="inv_year"
+        id="invYear"
+        placeholder="year should be 4 digits"
+        required
+        pattern="\d{4}"
+        value="<%= locals.inv_year %>"
+      />
     </div>
     <div class="class_form-input">
       <label for="invMiles">Miles</label>
-      <input type="text" name="inv_miles" id="invMiles" />
+      <input
+        type="text"
+        name="inv_miles"
+        id="invMiles"
+        required
+        value="<%= locals.inv_miles %>"
+      />
     </div>
     <div class="class_form-input">
       <label for="invColor">Color</label>
-      <input type="text" name="inv_color" id="invColor" />
+      <input
+        type="text"
+        name="inv_color"
+        id="invColor"
+        required
+        value="<%= locals.inv_color %>"
+      />
     </div>
 
     <button type="submit" value="Add Vehicle">Add Vehicle</button>

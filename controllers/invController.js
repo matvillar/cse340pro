@@ -1,9 +1,11 @@
 const invModel = require('../models/inventory-model');
 const utilities = require('../utilities');
+// const { validationResult } = require('express-validator');
 
 const invCont = {};
 
 invCont.buildByClassification = async function (req, res, next) {
+  console.log('buildByClassification called');
   const classificationId = req.params.classificationId;
   let data = await invModel.getVehiclesByClassificationId(classificationId);
   let nav = await utilities.getNav();
@@ -17,7 +19,9 @@ invCont.buildByClassification = async function (req, res, next) {
 };
 
 invCont.buildByVehicle = async function (req, res, next) {
+  console.log('buildByVE called');
   const inventoryId = req.params.inventoryId;
+
   let data = await invModel.getSpecificVehicles(inventoryId);
   let nav = await utilities.getNav();
   const vehicleName = `${data[0].inv_year} ${data[0].inv_make} ${data[0].inv_model}`;
@@ -33,6 +37,7 @@ invCont.buildByVehicle = async function (req, res, next) {
 //Manager Functions
 
 invCont.managerView = async function (req, res, next) {
+  console.log('managerview called');
   let nav = await utilities.getNav();
   res.render('../views/inventory/management.ejs', {
     title: `Vehicle Management`,
@@ -42,6 +47,7 @@ invCont.managerView = async function (req, res, next) {
 };
 
 invCont.addClassView = async function (req, res, next) {
+  console.log('addclasVie called');
   let nav = await utilities.getNav();
   res.render('../views/inventory/add-classification.ejs', {
     title: `Add New Classification`,
@@ -50,12 +56,13 @@ invCont.addClassView = async function (req, res, next) {
   });
 };
 invCont.addVehicleView = async function (req, res, next) {
+  console.log('add Vehicleview called');
   let nav = await utilities.getNav();
-  let selectOption = await utilities.getClassDropDown();
+  let classificationSelect = await utilities.buildClassDropDown();
   res.render('../views/inventory/add-vehicle.ejs', {
     title: `Add New Vehicle`,
     nav,
-    selectOption,
+    classificationSelect,
     message: null,
   });
 };
@@ -64,6 +71,7 @@ invCont.addVehicleView = async function (req, res, next) {
  *  Process Add New Classification
  **************************************** */
 invCont.AddClass = async function (req, res) {
+  console.log('Addclass called');
   let nav = await utilities.getNav();
 
   const { classification_name } = req.body;

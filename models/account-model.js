@@ -28,9 +28,10 @@ async function checkExistingEmail(client_email) {
   try {
     const sql = 'SELECT * FROM public.client WHERE client_email = $1';
     const email = await pool.query(sql, [client_email]);
-    return email.rowCount; //???
+    return email.rowCount;
   } catch (error) {
     return error.message;
   }
 }
+
 module.exports = { registerClient, checkExistingEmail };

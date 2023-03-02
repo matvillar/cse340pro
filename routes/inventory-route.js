@@ -1,4 +1,5 @@
 // Needed Resources
+const invValidate = require('../utilities/inventory-validation');
 const express = require('express');
 const router = new express.Router();
 const invController = require('../controllers/invController');
@@ -13,6 +14,16 @@ router.get('/add-classification', invController.addClassView);
 router.get('/add-vehicle', invController.addVehicleView);
 router.get('/admin-inv', invController.managerView);
 
-router.post('/admin-inv', invController.AddClass);
-router.post('/add-vehicle', invController.AddVehicle);
+router.post(
+  '/add-classification',
+  invValidate.addClassRules(),
+  invValidate.checkClassNameData,
+  invController.AddClass
+);
+router.post(
+  '/add-vehicle',
+  invValidate.addVehicleRules(),
+  invValidate.checkAddVehicleData,
+  invController.AddVehicle
+);
 module.exports = router;

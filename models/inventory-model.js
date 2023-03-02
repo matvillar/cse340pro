@@ -86,6 +86,19 @@ async function getClassList() {
   }
 }
 
+async function checkClassNameExists(classification_name) {
+  try {
+    console.log('Check if class name exists');
+    const sql =
+      'SELECT * FROM public.classification WHERE classification_name = $1';
+    const className = await pool.query(sql, [classification_name]);
+    console.log(className.rowCount);
+    return className.rowCount;
+  } catch (error) {
+    return error.message;
+  }
+}
+
 module.exports = {
   getClassifications,
   getVehiclesByClassificationId,
@@ -93,4 +106,5 @@ module.exports = {
   addClassCar,
   getClassList,
   addVehicleToData,
+  checkClassNameExists,
 };

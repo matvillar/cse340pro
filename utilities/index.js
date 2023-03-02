@@ -27,25 +27,34 @@ Util.getNav = async function (req, res, next) {
   return nav;
 };
 // Car selection/option (drop down)
-Util.getClassDropDown = async function (req, res, next) {
-  try {
-    let data = await invModel.getClassList();
-    // console.log('Data:', data);
-    let selectOption = Util.buildClassDropDown(data);
+// Util.getClassDropDown = async function (req, res, next) {
+//   try {
+//     let data = await invModel.getClassList();
+//     // console.log('Data:', data);
+//     let selectOption = Util.buildClassDropDown(data);
 
-    return selectOption;
-  } catch (error) {
-    console.log(`getClassDropDown error: ${error}`);
-    return error;
-  }
-};
+//     return selectOption;
+//   } catch (error) {
+//     console.log(`getClassDropDown error: ${error}`);
+//     return error;
+//   }
+// };
 // build Dorp down select option
-Util.buildClassDropDown = function (data) {
-  let select = `<label for="classificationName">Classification</label>`;
-  select += `<select name="classification_id" id="className"> `;
+Util.buildClassDropDown = async function (classification_id = null) {
+  let data = await invModel.getClassList();
+  let select = '<label for="classificationName">Classification</label>';
+  select += '<select name="classification_id" id="className"> ';
+  select += '<option>Choose a Class</option>  ';
 
   data.forEach((row) => {
-    select += `<option value="${row.classification_id}" required>${row.classification_name}</option>`;
+    select += '<option value="' + row.classification_id + '"';
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      select += ' selected';
+    }
+    select += '>' + row.classification_name + '</option>';
   });
   select += '</select>';
   return select;

@@ -3,12 +3,22 @@
 <% } else { res.redirect('/'); } %>
 
 <!-- Display message in case of error -->
-<% if (message) { %>
+<% if (typeof errors !== 'undefined') { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %><% if (message) { %>
 <p class="notice"><%= message %></p>
 <% } %>
 
 <div class="add-new-form_container">
-  <form class="classification-form" action="/inv/admin-inv" method="post">
+  <form
+    class="classification-form"
+    action="/inv/add-classification"
+    method="post"
+  >
     <h2>Classification Name</h2>
     <p>
       Name may <span>NOT</span> contain a space or special character of any
