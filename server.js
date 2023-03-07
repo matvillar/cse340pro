@@ -11,6 +11,7 @@ const env = require('dotenv').config();
 const app = express();
 const baseController = require('./controllers/baseController');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 /* ***********************
  * Middleware
@@ -35,8 +36,8 @@ app.use('/inv', require('./routes/inventory-route'));
 
 //Account Routes
 app.use('/client', require('./routes/account-route'));
-//Management Route
-
+// Cooklie Parser
+app.use(cookieParser());
 // Index Route
 app.get('/', baseController.buildHome);
 

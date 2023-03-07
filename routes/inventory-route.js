@@ -12,7 +12,7 @@ router.get('/detail/:inventoryId', invController.buildByVehicle);
 // Manager Route
 router.get('/add-classification', invController.addClassView);
 router.get('/add-vehicle', invController.addVehicleView);
-router.get('/admin-inv', invController.managerView);
+router.get('/', invController.managerView);
 
 router.post(
   '/add-classification',

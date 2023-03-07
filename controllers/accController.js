@@ -1,6 +1,8 @@
 const utilities = require('../utilities/index.js');
 const accModel = require('../models/account-model');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 /* ****************************************
  *  Deliver login view
@@ -74,4 +76,36 @@ accController.registerClient = async function (req, res) {
   }
 };
 
+// /* **************************************** Process login request **************************************** */
+accController.loginClient = async function (req, res) {
+  let nav = await utilities.getNav();
+  const { client_email, client_password } = req.body;
+  const clientData = await accModel.getClientByEmail(client_email);
+
+  if (!clientData) {
+    const message = 'Sorry, please check your email and password.';
+    res.status(400).render('clients/login', {
+      title: 'Login',
+      nav,
+      message,
+      errors: null,
+      client_email,
+    });
+    return;
+  }
+  try {
+    if (await bcrypt.compare(client_password, clientData.client_password)) {
+      delete clientData.client_password;
+      const accessToken = jwt.sign(
+        clientData,
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: 3600 * 1000 }
+      );
+      res.cookie('jwt', accessToken, { httpOnly: true });
+      return res.redirect('/client/');
+    }
+  } catch (error) {
+    return res.status(403).send('Access Denied');
+  }
+};
 module.exports = accController;

@@ -12,7 +12,11 @@ router.post(
   accController.registerClient
 );
 
-router.post('/login', (req, res) => {
-  res.status(200).send('login process');
-});
+router.post(
+  '/login',
+  regValidate.loginRules(),
+  // regValidate.checkLoginData,
+  accController.loginClient
+);
+
 module.exports = router;
