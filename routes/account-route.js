@@ -2,9 +2,19 @@ const regValidate = require('../utilities/account-validation');
 const express = require('express');
 const router = new express.Router();
 const accController = require('../controllers/accController');
+const utilities = require('../utilities/index.js');
 
 router.get('/login', accController.buildLogin);
+router.get('/logout', accController.buildLogOut);
 router.get('/register', accController.buildRegister);
+
+// Admnistration routes
+router.get(
+  '/',
+  utilities.checkJWTToken,
+  utilities.jwtAuthorize,
+  accController.buildLoggedView
+);
 router.post(
   '/register',
   regValidate.registrationRules(),
@@ -15,7 +25,7 @@ router.post(
 router.post(
   '/login',
   regValidate.loginRules(),
-  // regValidate.checkLoginData,
+  regValidate.checkLogData,
   accController.loginClient
 );
 

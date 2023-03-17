@@ -18,6 +18,16 @@ accController.buildLogin = async function (req, res, next) {
     message: null,
   });
 };
+accController.buildLogOut = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  res.clearCookie('jwt');
+  res.locals.loggedin = 0;
+  res.render('../views/index.ejs', {
+    title: 'Login',
+    nav,
+    message: null,
+  });
+};
 accController.buildRegister = async function (req, res, next) {
   let nav = await utilities.getNav();
   res.render('clients/register', {
@@ -77,13 +87,12 @@ accController.registerClient = async function (req, res) {
 };
 
 // /* **************************************** Process login request **************************************** */
-accController.loginClient = async function (req, res) {
+accController.loginClient = async function loginClient(req, res) {
   let nav = await utilities.getNav();
   const { client_email, client_password } = req.body;
   const clientData = await accModel.getClientByEmail(client_email);
-
   if (!clientData) {
-    const message = 'Sorry, please check your email and password.';
+    const message = 'Please check your credentials and try again.';
     res.status(400).render('clients/login', {
       title: 'Login',
       nav,
@@ -105,7 +114,20 @@ accController.loginClient = async function (req, res) {
       return res.redirect('/client/');
     }
   } catch (error) {
-    return res.status(403).send('Access Denied');
+    return res.status(403).send('Access Forbidden');
   }
+};
+
+// Logged in user
+accController.buildLoggedView = async function (req, res, next) {
+  const nav = await utilities.getNav();
+  // Retrieve the client type from the client data
+  res.render('clients/logged-view', {
+    title: "You're logged in",
+    nav,
+    message: null,
+    errors: null,
+    clientData: req.clientData,
+  });
 };
 module.exports = accController;

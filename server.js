@@ -12,13 +12,16 @@ const app = express();
 const baseController = require('./controllers/baseController');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const utilities = require('./utilities/index.js');
 
 /* ***********************
  * Middleware
  *************************/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //for parsing
-
+// Cooklie Parser
+app.use(cookieParser());
+app.use(utilities.checkClientLogin);
 /* ***********************
  * Routes
  *************************/
@@ -36,14 +39,9 @@ app.use('/inv', require('./routes/inventory-route'));
 
 //Account Routes
 app.use('/client', require('./routes/account-route'));
-// Cooklie Parser
-app.use(cookieParser());
+
 // Index Route
 app.get('/', baseController.buildHome);
-
-// app.get('/', (req, res) => {
-//   res.send('hello');
-// });
 
 /* ***********************
  * Local Server Information

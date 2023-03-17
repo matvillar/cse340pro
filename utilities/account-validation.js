@@ -1,6 +1,7 @@
 const accountModel = require('../models/account-model');
 const utilities = require('./');
 const { body, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 const validate = {};
 
@@ -77,13 +78,7 @@ validate.loginRules = () => {
       .trim()
       .isEmail()
       .normalizeEmail()
-      .withMessage('a valid email is required.')
-      .custom(async (client_email) => {
-        const emailExists = await accountModel.checkExistingEmail(client_email); // is it checkEmail or checkExistingEmail?? *******
-        if (emailExists) {
-          throw new Error('Email exists. Please login or use different email');
-        }
-      }),
+      .withMessage('A valid email is required.'),
 
     body('client_password')
       .trim()
@@ -97,19 +92,20 @@ validate.loginRules = () => {
       .withMessage('Password does not meet requirements.'),
   ];
 };
-validate.checkLogData = async function (res, req, next) {
+
+validate.checkLogData = async function (req, res, next) {
   const { client_email, client_password } = req.body;
   let errors = [];
   errors = validationResult(req);
+  console.log(errors);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
     res.render('../views/clients/login.ejs', {
       errors,
       message: null,
-      title: 'Registration',
+      title: 'Login',
       nav,
       client_email,
-      client_password,
     });
     return;
   }

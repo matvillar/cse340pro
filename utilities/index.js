@@ -1,4 +1,6 @@
 const invModel = require('../models/inventory-model');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const Util = {};
 
@@ -26,20 +28,7 @@ Util.getNav = async function (req, res, next) {
   // let view = Util.builCarView(data);
   return nav;
 };
-// Car selection/option (drop down)
-// Util.getClassDropDown = async function (req, res, next) {
-//   try {
-//     let data = await invModel.getClassList();
-//     // console.log('Data:', data);
-//     let selectOption = Util.buildClassDropDown(data);
 
-//     return selectOption;
-//   } catch (error) {
-//     console.log(`getClassDropDown error: ${error}`);
-//     return error;
-//   }
-// };
-// build Dorp down select option
 Util.buildClassDropDown = async function (classification_id = null) {
   let data = await invModel.getClassList();
   let select = '<label for="classificationName">Classification</label>';
@@ -58,6 +47,64 @@ Util.buildClassDropDown = async function (classification_id = null) {
   });
   select += '</select>';
   return select;
+};
+Util.checkJWTToken = (req, res, next) => {
+  jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err) {
+    if (err) {
+      return res.status(403).redirect('/client/login');
+    } else {
+      return next();
+    }
+  });
+};
+
+// ********************************************
+// Authorize JWT Token
+// ********************************************
+Util.jwtAuthorize = (req, res, next) => {
+  const token = req.cookies.jwt;
+  try {
+    const clientData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    req.clientData = clientData;
+    next();
+  } catch (err) {
+    // Redirect to login page if token is invalid
+    res.clearCookie('jwt', { httpOnly: true });
+    return res.status(403).redirect('/');
+  }
+};
+
+Util.checkClientLogin = (req, res, next) => {
+  if (req.cookies.jwt) {
+    res.locals.loggedin = 1;
+    next();
+  } else {
+    next();
+  }
+};
+Util.clearCookie = (req, res, next) => {
+  res.clearCookie('jwt', { httpOnly: true });
+  next();
+};
+
+Util.checkAdmin = (req, res, next) => {
+  if (
+    req.clientData.client_type != 'Employee' &&
+    req.clientData.client_type != 'Admin'
+  ) {
+    return res.status(403).redirect('/client/login');
+  }
+  next();
+};
+
+Util.checkAdmin = (req, res, next) => {
+  if (
+    req.clientData.client_type != 'Employee' &&
+    req.clientData.client_type != 'Admin'
+  ) {
+    return res.status(403).redirect('/client/login');
+  }
+  next();
 };
 
 module.exports = Util;

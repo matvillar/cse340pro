@@ -78,8 +78,6 @@ async function addVehicleToData(
 async function getClassList() {
   try {
     const data = await pool.query('SELECT * FROM public.classification');
-    // console.log(data);
-    // console.log(data.rows);
     return data.rows;
   } catch (error) {
     console.log(`getspecificvehicle error ${error}`);

@@ -1,0 +1,15 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Display message in case of error -->
+<% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %> <% if(clientData.client_type == "Client"){%>
+<h1>Welcome <%=clientData.client_firstname%></h1>
+<% } %> <% if(clientData.client_type == "Employee" || clientData.client_type ==
+"Admin"){%>
+<h2>Welcome <%=clientData.client_firstname%></h2>
+<h3>Inventory Management</h3>
+<p><a href="/inv/">Access Management</a></p>
+<% } %>
