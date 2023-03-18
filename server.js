@@ -12,7 +12,7 @@ const app = express();
 const baseController = require('./controllers/baseController');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const utilities = require('./utilities/index.js');
+const utilities = require('./utilities/');
 
 /* ***********************
  * Middleware
@@ -35,13 +35,40 @@ app.set('layout', './layouts/layout'); // not at views root
 app.use(require('./routes/static'));
 
 // Inventory routes
-app.use('/inv', require('./routes/inventory-route'));
+app.use('/inv', utilities.handleErrors(require('./routes/inventory-route')));
 
 //Account Routes
-app.use('/client', require('./routes/account-route'));
+app.use('/client', utilities.handleErrors(require('./routes/account-route')));
 
 // Index Route
-app.get('/', baseController.buildHome);
+app.get('/', utilities.handleErrors(baseController.buildHome));
+
+// Error Route
+app.get('/error', utilities.handleErrors(require('./routes/error-route')));
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({ status: 404, message: 'Sorry, we appear to have lost that page.' });
+});
+/* ***********************
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
+app.use(async (err, req, res, next) => {
+  let message;
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  if (err.status == 404) {
+    message = err.message;
+  } else {
+    message = 'Oh no! There was a crash. Maybe try a different route?';
+  }
+  res.render('errors/error', {
+    title: err.status || 'Server Error',
+    message,
+    nav,
+  });
+});
 
 /* ***********************
  * Local Server Information

@@ -179,6 +179,8 @@ footer {
   text-align: center;
   display: flex;
   flex-direction: column;
+  font-size: 1.3rem;
+  margin: 10px;
 }
 .notice li {
   font-weight: bold;
@@ -363,4 +365,12 @@ input[type='password']:invalid:focus {
 .class_form-input textarea {
   outline: none;
   padding: 5px;
+}
+
+.not-found {
+  width: 400px;
+  margin: 0 auto;
+}
+.not-found img {
+  width: 100%;
 }

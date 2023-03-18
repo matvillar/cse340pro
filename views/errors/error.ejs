@@ -1,0 +1,18 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/'); } %>
+
+<!-- Display message in case of error -->
+<% if (typeof errors !== 'undefined') { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %><% if (message) { %>
+<p class="notice"><%= message %></p>
+<% } %>
+
+<div class="not-found">
+  <img src="../../images/site/not-found.jpg" alt="Funny Man" />
+</div>
