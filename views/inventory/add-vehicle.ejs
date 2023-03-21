@@ -46,15 +46,9 @@
     </div>
     <div class="class_form-input">
       <label for="invDescription">Description</label>
-      <textarea
-        type="text"
-        name="inv_description"
-        id="invDescription"
-        form="addVehicle"
-        pattern="\w+"
-        required
-        value="<%=locals.inv_description%>"
-      ></textarea>
+      <textarea name="inv_description" id="invDescription" required>
+ <%=locals.inv_description%> </textarea
+      >
     </div>
     <div class="class_form-input">
       <label for="invImage">Image Path</label>
@@ -125,4 +119,4 @@
   </form>
 </div>
 
-<div class="go-back"><a href="/inv/"><--</a></div>
+<div class="go-back"><a href="/inv/">Go Back</a></div>
