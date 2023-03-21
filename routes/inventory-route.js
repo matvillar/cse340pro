@@ -16,7 +16,6 @@ router.get('/add-vehicle', invController.addVehicleView);
 router.get(
   '/',
   utilities.jwtAuthorize,
-  utilities.jwtAuthorize,
   utilities.checkAdmin,
   invController.managerView
 );

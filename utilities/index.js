@@ -31,7 +31,7 @@ Util.getNav = async function (req, res, next) {
 
 Util.buildClassDropDown = async function (classification_id = null) {
   let data = await invModel.getClassList();
-  let select = '<label for="classificationName">Classification</label>';
+  let select = '<label>Classification</label>';
   select += '<select name="classification_id" id="className"> ';
   select += '<option>Choose a Class</option>  ';
 
@@ -70,7 +70,7 @@ Util.jwtAuthorize = (req, res, next) => {
   } catch (err) {
     // Redirect to login page if token is invalid
     res.clearCookie('jwt', { httpOnly: true });
-    return res.status(403).redirect('/');
+    return res.status(403).redirect('/client/login');
   }
 };
 

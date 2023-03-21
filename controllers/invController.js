@@ -1,11 +1,9 @@
 const invModel = require('../models/inventory-model');
 const utilities = require('../utilities');
-// const { validationResult } = require('express-validator');
 
 const invCont = {};
 
 invCont.buildByClassification = async function (req, res, next) {
-  console.log('buildByClassification called');
   const classificationId = req.params.classificationId;
   let data = await invModel.getVehiclesByClassificationId(classificationId);
   let nav = await utilities.getNav();
@@ -19,9 +17,7 @@ invCont.buildByClassification = async function (req, res, next) {
 };
 
 invCont.buildByVehicle = async function (req, res, next) {
-  console.log('buildByVE called');
   const inventoryId = req.params.inventoryId;
-
   let data = await invModel.getSpecificVehicles(inventoryId);
   let nav = await utilities.getNav();
   const vehicleName = `${data[0].inv_year} ${data[0].inv_make} ${data[0].inv_model}`;
@@ -29,6 +25,7 @@ invCont.buildByVehicle = async function (req, res, next) {
     title: `${vehicleName}`,
     vehicleName,
     nav,
+
     message: null,
     data,
   });
@@ -37,12 +34,13 @@ invCont.buildByVehicle = async function (req, res, next) {
 //Manager Functions
 
 invCont.managerView = async function (req, res, next) {
-  console.log('managerview called');
   let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassDropDown();
   res.render('../views/inventory/management.ejs', {
     title: `Vehicle Management`,
     nav,
     message: null,
+    classificationSelect,
   });
 };
 
