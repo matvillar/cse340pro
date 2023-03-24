@@ -3,25 +3,20 @@
 <% } else { res.redirect('/'); } %>
 
 <!-- Display message in case of error -->
-<% if (typeof errors !== 'undefined') { %>
-<ul class="notice">
-  <% errors.array().forEach(error => { %>
-  <li><%= error.msg %></li>
-  <% }) %>
-</ul>
-<% } %><% if (message) { %>
+
+<% if (message) { %>
 <p class="notice"><%= message %></p>
 <% } %>
 
-<div class="add-new-form_container">
+<div class="edit-vehicle-form_container">
   <p>All Fields are required</p>
   <form
     class="classification-form"
-    id="addVehicle"
-    action="/inv/add-vehicle"
+    id="editVehicle"
+    action="/inv/update"
     method="post"
   >
-    <div class="class_form-input"><%- classificationSelect %></div>
+    <div class="class_form-input"><%-classificationSelect-%></div>
     <div class="class_form-input">
       <label for="invMake">Make</label>
       <input
@@ -47,7 +42,7 @@
     <div class="class_form-input">
       <label for="invDescription">Description</label>
       <textarea name="inv_description" id="invDescription" required>
- <%=locals.inv_description%> </textarea
+   <%=locals.inv_description%> </textarea
       >
     </div>
     <div class="class_form-input">
@@ -115,7 +110,14 @@
       />
     </div>
 
-    <button type="submit" value="Add Vehicle">Add Vehicle</button>
+    <button type="submit">Update Vehicle</button>
+    <input
+      type="hidden"
+      name="inv_id"
+      value="<% if(locals.inv_id) {%>
+    <%=locals.inv_id %>
+    <% } %>"
+    />
   </form>
 </div>
 

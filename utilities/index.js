@@ -33,7 +33,7 @@ Util.buildClassDropDown = async function (classification_id = null) {
   let data = await invModel.getClassList();
   let select = '<label>Classification</label>';
   select += '<select name="classification_id" id="className"> ';
-  select += '<option>Choose a Class</option>  ';
+  select += '<option disabled selected>Choose a Class</option>  ';
 
   data.forEach((row) => {
     select += '<option value="' + row.classification_id + '"';
