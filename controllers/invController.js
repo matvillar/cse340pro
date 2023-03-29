@@ -210,7 +210,6 @@ invCont.updateVehicle = async function (req, res, next) {
     inv_color,
     classification_id,
   } = req.body;
-  console.log(inv_image, inv_thumbnail);
 
   const updateResult = await invModel.updateVehicle(
     inv_id,

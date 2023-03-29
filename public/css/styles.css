@@ -374,3 +374,74 @@ input[type='password']:invalid:focus {
 .not-found img {
   width: 100%;
 }
+
+/* Logged in view */
+
+.loggedin-wrapper {
+  text-align: center;
+  border: #00d5ff 15px solid;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+  margin: 20px 60px;
+}
+.loggedin-text {
+  margin: 40px;
+}
+.loggedin-text p {
+  background-color: #88f9bb;
+  border: 3px solid #4dbf85;
+  border-radius: 20px;
+  padding: 10px;
+  width: 150px;
+  display: inline-block;
+  margin: -10px 0 20px 0;
+}
+.loggedin-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+.loggedin-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  flex-direction: column;
+}
+
+.link {
+  background-color: #00d5ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+  margin: 20px 0;
+  transition: all ease-in-out 0.3s;
+  color: #252535;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.link p {
+  margin: 10px;
+}
+
+.link i {
+  background-color: #fff;
+  border: #fff 4px solid;
+  border-radius: 50%;
+  padding: 10px;
+}
+.link:hover {
+  background-color: #26b9ff;
+  transform: translate(0, -10px);
+}
+/* edit account view */
+
+.editform {
+  text-align: start;
+  border: #00d5ff 15px solid;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+  margin: 20px 60px;
+}

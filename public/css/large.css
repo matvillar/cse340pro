@@ -104,4 +104,21 @@
     font-size: 1.2rem;
     font-weight: bolder;
   }
+
+  /* Loggedin view */
+  .loggedin-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    flex-direction: row;
+  }
+  .link {
+    width: 220px;
+  }
+  /* edit Account view */
+  .edit-account-wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 0;
+  }
 }

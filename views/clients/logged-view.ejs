@@ -3,13 +3,32 @@
 <% } else { res.redirect('/') } %>
 
 <!-- Display message in case of error -->
-<% if (message) { %>
-<p class="notice"><%= message %></p>
-<% } %> <% if(clientData.client_type == "Client"){%>
-<h1>Welcome <%=clientData.client_firstname%></h1>
-<% } %> <% if(clientData.client_type == "Employee" || clientData.client_type ==
-"Admin"){%>
-<h2>Welcome <%=clientData.client_firstname%></h2>
-<h3>Inventory Management</h3>
-<p><a href="/inv/">Access Management</a></p>
-<% } %>
+<div class="loggedin-wrapper">
+  <% if (message) { %>
+  <p class="notice"><%= message %></p>
+  <% } %> <% if (otherMessage) { %>
+  <p class="notice"><%= otherMessage %></p>
+  <% } %>
+  <div class="loggedin-text">
+    <p>You're logged in</p>
+    <% if(clientData.client_type == "Client"){%>
+    <h1>Welcome <%=clientData.client_firstname%></h1>
+    <% } %> <% if(clientData.client_type == "Employee" || clientData.client_type
+    == "Admin"){%>
+    <h2>Welcome <%=clientData.client_firstname%></h2>
+    <% } %>
+  </div>
+  <div class="loggedin-options">
+    <a href="/inv/" class="inv-manager link">
+      <i class="fa-solid fa-pen-to-square fa-2x"></i>
+      <p>Inventory</p>
+    </a>
+    <a
+      href="/client/edit-account/<%= clientData.client_id %>"
+      class="edit-account link"
+    >
+      <i class="fa-solid fa-user fa-2x"></i>
+      <p>Edit Account</p>
+    </a>
+  </div>
+</div>

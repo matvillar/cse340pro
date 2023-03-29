@@ -8,6 +8,20 @@ router.get('/login', accController.buildLogin);
 router.get('/logout', accController.buildLogOut);
 router.get('/register', accController.buildRegister);
 
+// Client routes - only accessible to logged in clients
+router.get('/edit-account/:client_id', accController.buildEditAccView);
+router.post(
+  '/edit-account',
+  regValidate.updateProfileRules(),
+  regValidate.checkUpdateProfileData,
+  accController.editAccount
+);
+router.post(
+  '/change-password',
+  regValidate.updatePasswordRules(),
+  regValidate.checkUpdatePasswordData,
+  accController.updatePassword
+);
 // Admnistration routes
 router.get(
   '/',

@@ -1,0 +1,98 @@
+<% if (title) { %>
+<h1 class="form-title"><%= title %></h1>
+<% } else { res.redirect('/') } %>
+<!-- Display message in case of error -->
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="edit-account-wrapper">
+  <% if (message) { %>
+  <p class="notice"><%= message %></p>
+  <% } %>
+
+  <div class="editform fn-ln">
+    <h2>Edit Profile</h2>
+    <form action="/client/edit-account" method="post">
+      <div class="form-input">
+        <label for="firstname">Firstname:</label>
+        <input
+          type="text"
+          name="client_firstname"
+          id="firstname"
+          required
+          value="<%= client_firstname %>"
+        />
+      </div>
+      <div class="form-input">
+        <label for="lastname">Lastname:</label>
+        <input
+          type="text"
+          name="client_lastname"
+          id="lastname"
+          required
+          value="<%= client_lastname %>"
+        />
+      </div>
+      <div class="form-input">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          name="client_email"
+          id="email"
+          required
+          value="<%= client_email %>"
+        />
+      </div>
+      <input
+        type="hidden"
+        name="client_id"
+        value="<% if(client_id) {%>
+    <%=client_id %>
+    <% } %>"
+      />
+      <div class="form-submit reg">
+        <input type="submit" value="Update" />
+      </div>
+    </form>
+  </div>
+
+  <!-- Change password form -->
+  <div class="editform change-password">
+    <h2>Update Password</h2>
+    <!-- <p>Entering a new password will change the current one. *</p> -->
+    <form action="/client/change-password" method="post">
+      <div class="form-input">
+        <label for="password">New Password:</label>
+
+        <input
+          type="password"
+          name="client_password"
+          id="password"
+          placeholder="Password"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        />
+      </div>
+      <input
+        type="hidden"
+        name="client_id"
+        value="<% if(client_id) {%>
+  <%=client_id %>
+  <% } %>"
+      />
+      <div class="password-req">
+        <p>At least 12 characters</p>
+        <p>At least 1 uppercase character</p>
+        <p>1 number and 1 special character</p>
+      </div>
+      <div class="form-submit reg">
+        <input type="submit" value="Change Password" />
+      </div>
+    </form>
+  </div>
+</div>
