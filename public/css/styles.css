@@ -445,3 +445,56 @@ input[type='password']:invalid:focus {
   box-shadow: 5px 8px 10px #ccc;
   margin: 20px 60px;
 }
+/* Vehicle management  */
+.admin {
+  border: #00d5ff 15px solid;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 8px 10px #ccc;
+  margin: 20px 60px;
+}
+.manage-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  flex-direction: column;
+  text-align: center;
+}
+.manage-vehicle {
+  width: 375px;
+  margin: 0 auto;
+}
+.manage-vehicle h2 {
+  text-align: center;
+  margin: 20px;
+}
+#className {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1.2rem;
+}
+#inventoryDisplay td,
+#inventoryDisplay th,
+#inventoryDisplay {
+  padding: 10px;
+  font-size: 1.2rem;
+}
+#inventoryDisplay td,
+#inventoryDisplay th {
+  border-top: 4px solid var(--primary-color);
+  border-bottom: 4px solid var(--primary-color);
+}
+#inventoryDisplay {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  border: 4px solid var(--primary-color);
+}
+#inventoryDisplay a {
+  text-decoration: none;
+  color: #252535;
+}

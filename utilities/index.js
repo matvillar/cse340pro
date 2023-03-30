@@ -31,7 +31,7 @@ Util.getNav = async function (req, res, next) {
 
 Util.buildClassDropDown = async function (classification_id = null) {
   let data = await invModel.getClassList();
-  let select = '<label>Classification</label>';
+  let select = '<label>Classification </label>';
   select += '<select name="classification_id" id="className"> ';
   select += '<option disabled selected>Choose a Class</option>  ';
 

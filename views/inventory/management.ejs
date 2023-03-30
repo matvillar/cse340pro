@@ -8,20 +8,22 @@
 <p class="notice"><%= message %></p>
 <% } %>
 <div class="admin">
-  <h2>
-    <a href="add-classification">Add New Classification</a>
-  </h2>
-  <h2><a href="add-vehicle">Add New Vehicle</a></h2>
+  <div class="manage-options">
+    <a href="add-classification" class="link">
+      <i class="fa-solid fa-file-circle-plus fa-2x"></i>
+      <p>Add New Classification</p>
+    </a>
+    <a href="add-vehicle" class="link">
+      <i class="fa-solid fa-car fa-2x"></i>
+      <p>Add New Vehicle</p>
+    </a>
+  </div>
+  <div class="manage-vehicle">
+    <h2>Manage Vehicles</h2>
 
-  <h2>Manage Vehicles</h2>
-  <p>
-    Select a classification from the list to see the vehicles belonging to the
-    classification
-  </p>
-
-  <div class="manage-view-select"><%- classificationSelect %></div>
-  <table id="inventoryDisplay"></table>
-  <noscript>JavaScript must be enabled to use this page.</noscript>
+    <div class="manage-view-select"><%- classificationSelect %></div>
+    <table id="inventoryDisplay"></table>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+  </div>
 </div>
-
 <script src="../../js/inventory.js"></script>

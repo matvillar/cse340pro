@@ -121,4 +121,10 @@
     justify-content: space-around;
     padding: 40px 0;
   }
+  .manage-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    flex-direction: row;
+  }
 }
