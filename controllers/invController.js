@@ -25,7 +25,6 @@ invCont.buildByVehicle = async function (req, res, next) {
     title: `${vehicleName}`,
     vehicleName,
     nav,
-
     message: null,
     data,
   });
